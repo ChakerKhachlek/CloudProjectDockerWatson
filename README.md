@@ -40,7 +40,7 @@ docker tag 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:groupe6-wat
 docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:groupe6-watson
 
 
-# FrontReact
+# * FrontReact * 
 
 Coming soon ...
  
