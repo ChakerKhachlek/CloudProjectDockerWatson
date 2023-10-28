@@ -4,6 +4,8 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 import config
 import redis  # Import the Redis library
 import json
+from flask_cors import CORS
+
 app = Flask(__name__)
 
 # Initialize IBM Watson Assistant
@@ -57,9 +59,10 @@ redis_client.set('context', json.dumps(initial_context))
 #     except Exception as e:
 #         return jsonify({'error': str(e)})
 
-# ************************Stateless session************************        
+# ************************Stateless Context************************        
 @app.route('/message', methods=['POST'])
 def handle_message():
+    
     data = request.get_json()
     message_text = data['message']
 
@@ -90,5 +93,6 @@ def handle_message():
 
 
 
+CORS(app, origins=["http://localhost:3000","http://127.0.0.1:3000"])
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

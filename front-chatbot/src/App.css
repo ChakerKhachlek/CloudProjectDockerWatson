@@ -1,0 +1,66 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+}
+
+/* App.css */
+.chat-container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.chat-display {
+  background: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 30px;
+}
+
+.message {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  word-wrap: break-word;
+}
+
+
+.bot {
+  background: #f0f0f0;
+  color: #333;
+  align-self: flex-start;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.recording-btn, .send-btn {
+  padding: 10px;
+  background: #6ca1cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left:20px;
+
+}
+
+.recording-btn:disabled, .send-btn:disabled {
+
+  background: #ccc;
+  cursor: not-allowed;
+}

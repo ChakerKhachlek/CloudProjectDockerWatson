@@ -1,6 +1,6 @@
 # CloudProjectDockerWatson
 
-# * Chat Bot *
+# * Chat Bot PORT 5000*
 First Point to the ibm-chatbot-service directory <br />
 cd /ibm-chatbot-service
 
@@ -20,7 +20,8 @@ GET [keyname]
 py app.py
 
 # Run it as docker instance 
-# Build the docker image
+Point on folder with cd <br />
+Build the docker image <br />
 docker build -t chatbot-service .
 
 # Run the image
@@ -39,6 +40,13 @@ docker tag 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:groupe6-wat
 # Push the image
 docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:groupe6-watson
 
+# * SpeechToText PORT 5001* 
+# Run it as docker instance 
+Point on folder with cd <br />
+Build the docker image <br />
+docker build -t chatbot-service .
+# Run the image
+docker run speechtext -d 5001:5001 --name speechtext
 
 # * FrontReact * 
 
