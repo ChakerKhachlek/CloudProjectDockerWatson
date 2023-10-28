@@ -1,14 +1,14 @@
 # CloudProjectDockerWatson
 
 # * Chat Bot *
-First Point to the ibm-chatbot-service directory
+First Point to the ibm-chatbot-service directory <br />
 cd /ibm-chatbot-service
 
 # ! If you don't have the redis docker image
 docker pull redis
 
 # To run the redis databse locally
-docker run -d -p 6379:6379 --name redis-container redis
+docker run -d -p 6379:6379 --name redis-container redis 
 # Run redis command line
 docker exec -it my-redis-container redis-cli
 # To see all stored keys from cli
@@ -27,7 +27,7 @@ docker build -t chatbot-service .
 docker run -d 5000:5000 --name chatbot-service
 
 # Puch to registry 
-First connect to the cloud registry ( You have to install aws cli on windows )
+First connect to the cloud registry ( You have to install aws cli on windows ) <br />
 aws configure
 
 # Build the image  
