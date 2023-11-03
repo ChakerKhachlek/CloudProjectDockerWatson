@@ -48,7 +48,13 @@ docker build -t chatbot-service .
 # Run the image
 docker run speechtext -d 5001:5001 --name speechtext
 
-# * FrontReact * 
+# * Compose *
 
-Coming soon ...
- 
+No more need to run docker images separatly you can use first time build :</br>
+
+docker-compose up --build
+
+Later on :
+
+docker-compose up
+
