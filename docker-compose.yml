@@ -1,0 +1,43 @@
+#version: "3"
+
+#services:
+#  web:
+#    build: .
+#    ports:
+#      - "5000:5000"
+#    depends_on:
+#      - redis
+#  redis:
+#    image: "redis:alpine"
+
+version: "3"
+
+services:
+  front:
+    build: ./front-chatbot
+    image: "chatbot-front"
+    ports:
+      - "3000:3000"
+    networks:
+      - chatbot-network
+
+  api:
+    build: ./ibm-chatbot-service
+    image: "chatbot-api"
+    ports:
+      - "5000:5000" # Assuming your API runs on port 5000
+    networks:
+      - chatbot-network
+    depends_on:
+      - redis
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - chatbot-network
+
+networks:
+  chatbot-network:
+    driver: bridge
