@@ -24,7 +24,7 @@ def handle_message():
     data = request.get_json()
     message = data['message']
     context = data.get('context', {})  # Retrieve the context from the request
-    print(context)
+
     try:
         # Send the message to Watson Assistant with the provided context
         response = assistant.message_stateless(

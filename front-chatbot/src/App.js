@@ -45,7 +45,7 @@ function App() {
     setText("");
     console.log(chatMessages);
     try {
-      const response = await axios.post("http://localhost:5000/message", {
+      const response = await axios.post("http://localhost:5001/message", {
         message: text,
       });
       const botResponse = response.data.output.generic[0].text; // Access the bot's response
