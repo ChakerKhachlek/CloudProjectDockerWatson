@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orchestrateur
+  namespace: team6
+  labels:
+    app: orchestrateur
+spec:
+  replicas: 3 # Le nombre de répliques souhaité
+  selector:
+    matchLabels:
+      app: orchestrateur
+  template:
+    metadata:
+      labels:
+        app: orchestrateur
+    spec:
+      containers:
+      - name: orchestrateur
+        image: 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-orchestrateur # Nom de l'image Docker à utiliser
+        ports:
+        - name: http
+          containerPort: 5001 # Port sur lequel l'orchestrator écoute
+          protocol: TCP

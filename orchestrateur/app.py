@@ -7,7 +7,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app) 
 # URL of the original app that connects to Watson Assistant
-ORIGINAL_APP_URL = "http://api:5000"  # Replace with the actual host of the original app
+ORIGINAL_APP_URL = "http://localhost:8080"  # Replace with the actual host of the original app
 
 # Redis connection
 redis_client = redis.StrictRedis(host='redis', port=6379, db=0, decode_responses=True)  # Change 'localhost' to 'redis'

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatbot-api
+  namespace: team6
+  labels:
+    app: chatbot-api
+spec:
+  replicas: 3 # Le nombre de répliques souhaité
+  selector:
+    matchLabels:
+      app: chatbot-api
+  template:
+    metadata:
+      labels:
+        app: chatbot-api
+    spec:
+      containers:
+      - name: chatbot-api
+        image: 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-api # Nom de l'image Docker à utiliser
+        ports:
+        - containerPort: 5000 # Port sur lequel l'API écoute
+          protocol: TCP

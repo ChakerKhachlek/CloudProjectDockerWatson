@@ -69,13 +69,32 @@ kubectl delete -f chatbot-namespace.yaml
 
 
 # push to aws
-docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/chatbot-front
-docker build –t 48878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-front .
-docker build -t 48878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-api .
-docker tag chatbot-front 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-front
-docker tag chatbot-api 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-api
-
 aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 448878779811.dkr.ecr.eu-west-3.amazonaws.com
+docker build -t team6-front:latest -t 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-front .
+docker build -t team6-api -t 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-api .
+docker build -t team6-orchestrateur -t 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-orchestrateur . 
+docker build -t redis -t 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-redis .
 
-docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-front
-docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-api
+docker tag team6-front 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-front
+docker tag team6-api 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-api
+docker tag team6-orchestrateur 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-orchestrateur
+docker tag redis 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-redis
+
+docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-front
+docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-api
+docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-orchestrateur
+docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-redis
+
+
+kubectl apply -f api-deployment.yaml
+kubectl apply -f frontend-deployment.yaml
+kubectl apply -f orchestrateur-deployment.yaml
+kubectl apply -f redis-deployment.yaml
+
+ kubectl apply -f api-service.yaml
+  kubectl apply -f frontend-service.yaml
+   kubectl apply -f orchestrateur-service.yaml
+   kubectl apply -f redis-service.yaml
+
+    kubectl apply -f ingress.yaml
+
