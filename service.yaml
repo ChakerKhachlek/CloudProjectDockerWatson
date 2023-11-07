@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: watson-assistant-broker-svc
+  namespace: team6
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5000
+      protocol: TCP
+  selector:
+    app: watson-assistant-broker

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: watson-assistant-broker
+  namespace: team6
+  labels:
+    app: watson-assistant-broker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: watson-assistant-broker
+  template:
+    metadata:
+      labels:
+        app: watson-assistant-broker
+    spec:
+      containers:
+      - name: watson-assistant-broker
+        image: 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-api
+        ports:
+        - containerPort: 5000
+          protocol: TCP

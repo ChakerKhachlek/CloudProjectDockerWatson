@@ -40,15 +40,7 @@ docker tag 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:groupe6-wat
 # Push the image
 docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:groupe6-watson
 
-# * SpeechToText PORT 5001* 
-# Run it as docker instance 
-Point on folder with cd <br />
-Build the docker image <br />
-docker build -t chatbot-service .
-# Run the image
-docker run speechtext -d 5001:5001 --name speechtext
-
-# * Compose *
+# * Docker Compose *
 
 No more need to run docker images separatly you can use first time build :</br>
 
@@ -58,3 +50,32 @@ Later on :
 
 docker-compose up
 
+# * Kubernetees *
+# Install minikube for local kubernetees
+minikube start --driver=docker
+
+# To check the status of pods:
+kubectl get pods -n chatbot-namespace
+#check services
+kubectl get services -n chatbot-namespace
+
+
+
+# Access services
+kubectl port-forward -n chatbot-namespace service/chatbot-front-service 3000:3000
+
+# Clean up ( Remove everything)
+kubectl delete -f chatbot-namespace.yaml
+
+
+# push to aws
+docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/chatbot-front
+docker build –t 48878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-front .
+docker build -t 48878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-api .
+docker tag chatbot-front 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-front
+docker tag chatbot-api 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-api
+
+aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 448878779811.dkr.ecr.eu-west-3.amazonaws.com
+
+docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-front
+docker push 448878779811.dkr.ecr.eu-west-3.amazonaws.com/acospain-ecr:team6-chatbot-api
