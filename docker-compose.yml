@@ -29,7 +29,18 @@ services:
     networks:
       - chatbot-network
     depends_on:
+      - redis 
+      
+  orchestrator:
+    build: ./orchestrateur
+    image: "orchestrateur"
+    ports:
+      - "5001:5001" # Assuming your API runs on port 5000
+    networks:
+      - chatbot-network
+    depends_on:
       - redis
+      - api
 
   redis:
     image: redis
